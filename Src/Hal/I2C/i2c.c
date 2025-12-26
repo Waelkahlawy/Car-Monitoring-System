@@ -1,29 +1,29 @@
-#include "i2c.h"
-
+#include "i2c.h" // Include I2C header
+// Check if I2C feature is enabled
 #if I2C_ENABLED == STD_ON
 
-#include "esp_log.h"
+#include "esp_log.h" // ESP32 logging
 
 // Debug TAG
-static const char *TAG = TAG_I2C;
+static const char *g_TAG = TAG_I2C;
 
 // Global I2C port
 static i2c_port_t g_I2c_Port;
-
+// Initialize I2C with given configurations
 void I2c_Init(I2c_ConfigType *configurations)
 {
-#if I2C_ENABLED == STD_ON
+
     // Store I2C port
     g_I2c_Port = configurations->port;
 
     // I2C master configuration
     i2c_config_t conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = configurations->sda_pin,
-        .scl_io_num = configurations->scl_pin,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_speed = configurations->clk_speed
+        .mode = I2C_MODE_MASTER, // Master mode
+        .sda_io_num = configurations->sda_pin, // SDA pin
+        .scl_io_num = configurations->scl_pin,  // SCL pin
+        .sda_pullup_en = GPIO_PULLUP_ENABLE,     // Enable internal pull-up for SDA
+        .scl_pullup_en = GPIO_PULLUP_ENABLE,        // Enable internal pull-up for SCL
+        .master.clk_speed = configurations->clk_speed   // Clock speed in Hz
     };
 
     // Configure I2C parameters
@@ -33,17 +33,17 @@ void I2c_Init(I2c_ConfigType *configurations)
     i2c_driver_install(g_I2c_Port, conf.mode, 0, 0, 0);
 
 #if I2C_DEBUG_ENABLED == STD_ON
-    ESP_LOGI(TAG, " I2C Initialized");
-    ESP_LOGI(TAG, "Port: %d, SDA: %d, SCL: %d, Speed: %lu Hz",
+    ESP_LOGI(g_TAG, " I2C Initialized");
+    ESP_LOGI(g_TAG, "Port: %d, SDA: %d, SCL: %d, Speed: %lu Hz",
              g_I2c_Port, configurations->sda_pin, 
              configurations->scl_pin, configurations->clk_speed);
 #endif
-#endif
-}
 
+}
+// Write data to I2C device
 int I2c_Write(uint8_t device_addr, uint8_t *data, size_t size)
 {
-#if I2C_ENABLED == STD_ON
+
     // Create I2C command link
     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
     
@@ -67,21 +67,19 @@ int I2c_Write(uint8_t device_addr, uint8_t *data, size_t size)
 
 #if I2C_DEBUG_ENABLED == STD_ON
     if (ret == ESP_OK) {
-        ESP_LOGI(TAG, "Write to 0x%02X: %d bytes", device_addr, size);
+        ESP_LOGI(g_TAG, "Write to 0x%02X: %d bytes", device_addr, size);
     } else {
         ESP_LOGE(TAG, "Write to 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
     }
 #endif
 
     return (ret == ESP_OK) ? 0 : -1;
-#else
-    return -1;
-#endif
-}
 
+}
+// Read data from I2C device
 int I2c_Read(uint8_t device_addr, uint8_t *data, size_t size)
 {
-#if I2C_ENABLED == STD_ON
+
     if (size == 0) {
         return -1;
     }
@@ -112,22 +110,20 @@ int I2c_Read(uint8_t device_addr, uint8_t *data, size_t size)
 
 #if I2C_DEBUG_ENABLED == STD_ON
     if (ret == ESP_OK) {
-        ESP_LOGI(TAG, "Read from 0x%02X: %d bytes", device_addr, size);
+        ESP_LOGI(g_TAG, "Read from 0x%02X: %d bytes", device_addr, size);
     } else {
-        ESP_LOGE(TAG, "Read from 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
+        ESP_LOGE(g_TAG, "Read from 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
     }
 #endif
 
     return (ret == ESP_OK) ? 0 : -1;
-#else
-    return -1;
-#endif
-}
 
+}
+// Write then read data from I2C device
 int I2c_WriteRead(uint8_t device_addr, uint8_t *write_data, size_t write_size,
                   uint8_t *read_data, size_t read_size)
 {
-#if I2C_ENABLED == STD_ON
+
     // Create I2C command link
     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
     
@@ -163,16 +159,17 @@ int I2c_WriteRead(uint8_t device_addr, uint8_t *write_data, size_t write_size,
 
 #if I2C_DEBUG_ENABLED == STD_ON
     if (ret == ESP_OK) {
-        ESP_LOGI(TAG, "WriteRead 0x%02X: W=%d, R=%d bytes", device_addr, write_size, read_size);
+        ESP_LOGI(g_TAG, "WriteRead 0x%02X: W=%d, R=%d bytes", device_addr, write_size, read_size);
     } else {
-        ESP_LOGE(TAG, "WriteRead 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
+        ESP_LOGE(g_TAG, "WriteRead 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
     }
 #endif
 
     return (ret == ESP_OK) ? 0 : -1;
-#else
-    return -1;
-#endif
+
 }
+#else 
+ ESP_LOGI(g_TAG, " I2C feature is disabled "); 
+return -1;
 
 #endif // I2C_ENABLED
