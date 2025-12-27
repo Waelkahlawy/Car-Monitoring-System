@@ -42,10 +42,10 @@ static void Wifi_EventHandler(void *arg, esp_event_base_t event_base,
 void Wifi_Init_Sta(void)
 {
     // Initialize NVS (required for Wi-Fi)
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        nvs_flash_erase();
-        nvs_flash_init();
+    esp_err_t ret = nvs_flash_init(); // Initialize non-volatile storage
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) { // Handle NVS issues
+        nvs_flash_erase(); // Erase NVS
+        nvs_flash_init(); // Re-initialize NVS
     }
 
     // Initialize network interface
@@ -82,6 +82,8 @@ void Wifi_Init_Sta(void)
     
     // Start Wi-Fi
     esp_wifi_start();
+    // Disable power save mode for better performance
+    esp_wifi_set_ps(WIFI_PS_NONE);
 
 #if WIFI_DEBUG_ENABLED == STD_ON
     ESP_LOGI(g_TAG, "Wi-Fi initialized (SSID: %s)", WIFI_SSID);
@@ -90,8 +92,10 @@ void Wifi_Init_Sta(void)
 
 #else
 
- ESP_LOGI(g_TAG, " Wi-Fi feature is disabled "); 
-return -1;
-
+// Stub function when WiFi is disabled
+void Wifi_Init_Sta(void)
+{
+    // Do nothing
+}
 
 #endif // WIFI_ENABLED
