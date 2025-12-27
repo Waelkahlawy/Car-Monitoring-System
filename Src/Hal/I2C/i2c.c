@@ -69,7 +69,7 @@ int I2c_Write(uint8_t device_addr, uint8_t *data, size_t size)
     if (ret == ESP_OK) {
         ESP_LOGI(g_TAG, "Write to 0x%02X: %d bytes", device_addr, size);
     } else {
-        ESP_LOGE(TAG, "Write to 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
+        ESP_LOGE(g_TAG, "Write to 0x%02X failed: %s", device_addr, esp_err_to_name(ret));
     }
 #endif
 
