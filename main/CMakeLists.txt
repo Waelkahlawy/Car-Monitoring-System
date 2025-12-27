@@ -15,6 +15,9 @@ idf_component_register(
 =======
         "../Src/Hal/WiFi/wifi.c"       # list the source files of this component
         "../Src/App/ULTRASONIC/ultrasonic.c"       # list the source files of this component
+<<<<<<< HEAD
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
     INCLUDE_DIRS 
         "."
@@ -24,8 +27,12 @@ idf_component_register(
         "../Src/Hal/UART"
         "../Src/Hal/WiFi"
 <<<<<<< HEAD
+<<<<<<< HEAD
         "../Src/App/IMU"
         "../Src/Hal/MQTT"
+=======
+        "../Src/App/ULTRASONIC"
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
         "../Src/App/ULTRASONIC"
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd

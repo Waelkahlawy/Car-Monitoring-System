@@ -6,8 +6,13 @@
 #define STD_ON      1 // Enabled
 #define STD_OFF     0   // Disabled
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 // Tags for logging
+=======
+
+//------------------Tags for Hal logging------------//
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
 
 //------------------Tags for Hal logging------------//
@@ -22,9 +27,12 @@
 #define TAG_LDR         "LDR_SENSOR"
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------Enable or disable Hal drivers------------//
 #define GPIO_ENABLED            STD_ON
 #define ADC_ENABLED             STD_ON
@@ -41,7 +49,13 @@
 #define ULTRASONIC_ENABLED  STD_ON
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 
+//------------------Enable or disable App drivers------------//
+#define ULTRASONIC_ENABLED  STD_ON
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------Enable or disable debug logs for Hal drivers------------//
 // GPIO Debugging
 #if GPIO_ENABLED == STD_ON
@@ -69,6 +83,9 @@
 #endif
 
 //------------------ Hal driver configration------------//
+<<<<<<< HEAD
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 #if WIFI_ENABLED == STD_ON
 #define WIFI_SSID               "WAEL"
@@ -76,6 +93,7 @@
 #define WIFI_DEBUG_ENABLED      STD_ON
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if IMU_ENABLED == STD_ON
 #define IMU_DEBUG_ENABLED       STD_ON
@@ -137,10 +155,15 @@
 
 
 =======
+=======
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------ App driver configration------------//
 //Ultrasonic config
 #define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)
 #define ULTRASONIC_DIV_FACTOR              (2.0f)
+<<<<<<< HEAD
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 
 
