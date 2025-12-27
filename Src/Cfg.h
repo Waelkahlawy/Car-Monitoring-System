@@ -7,8 +7,13 @@
 #define STD_OFF     0   // Disabled
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 // Tags for logging
+=======
+
+//------------------Tags for Hal logging------------//
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
 
 //------------------Tags for Hal logging------------//
@@ -28,9 +33,12 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------Enable or disable Hal drivers------------//
@@ -47,6 +55,7 @@
 
 //------------------Enable or disable App drivers------------//
 #define ULTRASONIC_ENABLED  STD_ON
+<<<<<<< HEAD
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 
 //------------------Enable or disable App drivers------------//
@@ -54,6 +63,10 @@
 
 <<<<<<< HEAD
 =======
+
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
+
 
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------Enable or disable debug logs for Hal drivers------------//
@@ -84,6 +97,9 @@
 
 //------------------ Hal driver configration------------//
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
@@ -93,6 +109,7 @@
 #define WIFI_DEBUG_ENABLED      STD_ON
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #if IMU_ENABLED == STD_ON
@@ -157,11 +174,16 @@
 =======
 =======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 //------------------ App driver configration------------//
 //Ultrasonic config
 #define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)
 #define ULTRASONIC_DIV_FACTOR              (2.0f)
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
+=======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
 =======
 >>>>>>> cf08a02df6ca5a265fda952ad4a93d10d2438acd
