@@ -8,16 +8,20 @@ idf_component_register(
         "../Src/Hal/ADC/adc.c"      # list the source files of this component
         "../Src/Hal/I2C/i2c.c"    # list the source files of this component
         "../Src/Hal/UART/uart.c"    # list the source files of this component
-        "../Src/Hal/WiFi/wifi.c"       # list the source files of this component
-        "../Src/App/ULTRASONIC/ultrasonic.c"       # list the source files of this component
+        "../Src/Hal/WIFI/wifi.c"    # list the source files of this component
+        "../Src/App/IMU/imu.c" 
+        "../Src/App/MQTT/mqtt.c"      # list the source files of this component
+                                         # list the source files of this component
     INCLUDE_DIRS 
         "."
         "../Src/Hal/GPIO" # list the public include directories of this component
         "../Src/Hal/ADC"  
         "../Src/Hal/I2C"    
         "../Src/Hal/UART"
-        "../Src/Hal/WiFi"
-        "../Src/App/ULTRASONIC"
+        "../Src/Hal/WIFI"
+        "../Src/App/MQTT"
+        "../Src/App/IMU/"
+
                 # optional, add here public include directories
     PRIV_INCLUDE_DIRS   # optional, add here private include directories
     REQUIRES            # optional, list the public requirements (component names)

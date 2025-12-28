@@ -168,8 +168,5 @@ int I2c_WriteRead(uint8_t device_addr, uint8_t *write_data, size_t write_size,
     return (ret == ESP_OK) ? 0 : -1;
 
 }
-#else 
- ESP_LOGI(g_TAG, " I2C feature is disabled "); 
-return -1;
 
 #endif // I2C_ENABLED
