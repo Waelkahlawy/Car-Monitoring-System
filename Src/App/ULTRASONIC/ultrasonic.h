@@ -29,6 +29,8 @@ void Ultrasonic_Init(Ultrasonic_Config_t *Ultrasonic_Config);
  */
 void Ultrasonic_Main(float *Distance);
 
+
 #endif//ULTRASONIC_ENABLED
+
 
 #endif /* ULTRASONIC_H */  
