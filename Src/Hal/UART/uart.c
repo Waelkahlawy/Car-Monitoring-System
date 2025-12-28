@@ -18,11 +18,11 @@ void Uart_Init(Uart_ConfigType *configurations)
     // UART configuration (8N1 - standard for GPS)
     uart_config_t uart_config = {
         .baud_rate = configurations->baud_rate,// Set baud rate from configuration
-        .data_bits = UART_DATA_8_BITS,   // 8 data bits
-        .parity = UART_PARITY_DISABLE,  // No parity
-        .stop_bits = UART_STOP_BITS_1,  // 1 stop bit
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,  // No flow control
-        .source_clk = UART_SCLK_DEFAULT,    // Default source clock
+        .data_bits = UART_FRAME_LENGTH,   // 8 data bits
+        .parity = UART_PARITY_CHECK,  // No parity
+        .stop_bits = UART_STOP_BIT,  // 1 stop bit
+        .flow_ctrl = UART_FLOW_CTRL,  // No flow control
+        .source_clk = UART_SOURCE_CLK,    // Default source clock
     };
 
     // Configure UART parameters
