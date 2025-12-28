@@ -1,4 +1,5 @@
 # IDE / Workspace settings
+.vscode/
 .clang-format
 .clangd
 .cproject
