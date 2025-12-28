@@ -4,6 +4,7 @@
 .cproject
 .project
 .settings/
+.vscode
 
 # Compiled files
 *.o
