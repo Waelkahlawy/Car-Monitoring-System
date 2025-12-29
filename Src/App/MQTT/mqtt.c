@@ -4,7 +4,7 @@
 
 #include "esp_log.h"
 #include <string.h>
-#include "../WIFI/wifi.h" // Include Wi-Fi header
+#include "../../Hal/WIFI/wifi.h" // Include Wi-Fi header
 
 // Debug TAG
 static const char *g_TAG = TAG_MQTT;

@@ -3,24 +3,31 @@
 
 idf_component_register(
         SRCS 
-        "main.c"
-        "../Src/Hal/Gpio/gpio.c" # list the source files of this component
-        "../Src/Hal/ADC/adc.c"      # list the source files of this component
-        "../Src/Hal/I2C/i2c.c"    # list the source files of this component
-        "../Src/Hal/UART/uart.c"    # list the source files of this component
-        "../Src/Hal/WIFI/wifi.c"    # list the source files of this component
+        # List the source files of this component here  
+        "main.c" 
+        "../Src/Hal/Gpio/gpio.c" 
+        "../Src/Hal/ADC/adc.c"      
+        "../Src/Hal/I2C/i2c.c"    
+        "../Src/Hal/UART/uart.c"   
+        "../Src/Hal/WIFI/wifi.c"    
         "../Src/App/IMU/imu.c" 
-        "../Src/App/MQTT/mqtt.c"      # list the source files of this component
-                                         # list the source files of this component
+        "../Src/App/MQTT/mqtt.c"       
+        "../Src/App/LDR/ldr.c" 
+        "../Src/App/Ultrasonic/ultrasonic.c"     
+
     INCLUDE_DIRS 
+        # List the include directories of this component here
         "."
-        "../Src/Hal/GPIO" # list the public include directories of this component
+        "../Src/Hal/GPIO" 
         "../Src/Hal/ADC"  
         "../Src/Hal/I2C"    
         "../Src/Hal/UART"
         "../Src/Hal/WIFI"
         "../Src/App/MQTT"
         "../Src/App/IMU/"
+        "../Src/App/LDR"
+        "../Src/App/Ultrasonic"
+                        
 
                 # optional, add here public include directories
     PRIV_INCLUDE_DIRS   # optional, add here private include directories

@@ -4,7 +4,7 @@
 #include "../../Cfg.h"
 
 #if MQTT_ENABLED == STD_ON
-
+#include <stdint.h>
 #include "mqtt_client.h"
 
 // Callback function type for MQTT data received

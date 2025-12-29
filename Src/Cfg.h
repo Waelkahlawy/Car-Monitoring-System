@@ -63,7 +63,7 @@
 
 // Ultrasonic Configuration & Debugging
 #if ULTRASONIC_ENABLED == STD_ON
-#define ULTRASONIC_DEBUG_ENABLED      STD_ON  // Enable Ultrasonic debug logs
+#define ULTRASONIC_DEBUG_ENABLED           STD_ON  // Enable Ultrasonic debug logs
 #define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)     // Speed of sound in cm/us
 #define ULTRASONIC_DIV_FACTOR              (2.0f)   // Division factor for distance calculation
 
@@ -71,17 +71,17 @@
 
 // IMU Configuration & Debugging
 #if IMU_ENABLED == STD_ON
-#define IMU_DEBUG_ENABLED       STD_ON
+#define IMU_DEBUG_ENABLED      STD_ON
 // MPU6050 I2C Address
-#define MPU6050_ADDR            0x68          // Default I2C address
+#define MPU6050_ADDR           0x68          // Default I2C address
 // MPU6050 Registers
-#define MPU6050_PWR_MGMT_1      0x6B         // Power Management register
-#define MPU6050_WHO_AM_I        0x75         // Who Am I register   
-#define MPU6050_ACCEL_XOUT_H    0x3B         // Accelerometer data register
-#define MPU6050_GYRO_XOUT_H     0x43         // Gyroscope data register   
-#define MPU6050_TEMP_OUT_H      0x41         // Temperature data register
-#define ACCEL_SENS_2G           16384.0f     // LSB/g
-#define GYRO_SENS_250DPS        131.0f       // LSB/(deg/s)
+#define MPU6050_PWR_MGMT_1     0x6B         // Power Management register
+#define MPU6050_WHO_AM_I       0x75         // Who Am I register   
+#define MPU6050_ACCEL_XOUT_H   0x3B         // Accelerometer data register
+#define MPU6050_GYRO_XOUT_H    0x43         // Gyroscope data register   
+#define MPU6050_TEMP_OUT_H     0x41         // Temperature data register
+#define ACCEL_SENS_2G          16384.0f     // LSB/g
+#define GYRO_SENS_250DPS       131.0f       // LSB/(deg/s)
 
 #endif // IMU_ENABLED
 
@@ -95,6 +95,17 @@
 #define WIFI_PASSWORD           "Null@987897"    // Your WiFi Password
 
 #endif
+
+#if UART_ENABLED == STD_ON
+#define UART_DEBUG_ENABLED      STD_ON
+#define UART_BAUD_RATE          9600   
+#define UART_FRAME_LENGTH       UART_DATA_8_BITS          
+#define UART_PARITY_CHECK       UART_PARITY_DISABLE
+#define UART_STOP_BIT           UART_STOP_BITS_1
+#define UART_FLOW_CTRL          UART_HW_FLOWCTRL_DISABLE
+#define UART_SOURCE_CLK         UART_SCLK_DEFAULT
+#endif
+
 
 
 #endif 
