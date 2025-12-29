@@ -16,10 +16,7 @@
 #define TAG_IMU         "IMU_DRIVER"
 #define TAG_MQTT        "MQTT_DRIVER"
 #define TAG_LDR         "LDR_SENSOR"
-
-
-//------------------Tags for App logging------------//
-#define TAG_ULTRASONIC   "ULTRASONIC_DRIVER"
+#define TAG_ULTRASONIC  "ULTRASONIC_DRIVER"
 
 //------------------Enable or disable Hal drivers------------//
 #define GPIO_ENABLED            STD_ON
@@ -97,13 +94,14 @@
 #endif
 
 #if UART_ENABLED == STD_ON
-#define UART_DEBUG_ENABLED      STD_ON
-#define UART_BAUD_RATE          9600   
-#define UART_FRAME_LENGTH       UART_DATA_8_BITS          
-#define UART_PARITY_CHECK       UART_PARITY_DISABLE
-#define UART_STOP_BIT           UART_STOP_BITS_1
-#define UART_FLOW_CTRL          UART_HW_FLOWCTRL_DISABLE
-#define UART_SOURCE_CLK         UART_SCLK_DEFAULT
+#define UART_DEBUG_ENABLED      STD_ON  
+#define UART_BAUD_RATE          9600                        // Baud rate
+#define UART_FRAME_LENGTH       UART_DATA_8_BITS            // 8 data bits
+#define UART_PARITY_CHECK       UART_PARITY_DISABLE         // No parity
+#define UART_STOP_BIT           UART_STOP_BITS_1            // 1 stop bit
+#define UART_FLOW_CTRL          UART_HW_FLOWCTRL_DISABLE    // No flow control
+#define UART_SOURCE_CLK         UART_SCLK_DEFAULT           // Default source clock
+
 #endif
 
 
