@@ -21,12 +21,15 @@ typedef struct
     float Latitude;
     float Longitude;
     float Altitude;
-}Gps_Location_t;
+    float Speed;
+    float Course;
+    float Timestamp;
+}Gps_Parameters_t;
 
 
 
-void GPS_Init   (void);
-void GPS_RawNmea(void);
+void GPS_Init   (const Uart_ConfigType *UART_Config);
+void GPS_GetData(Gps_Parameters_t *GPS_Parametars);
 
 
 
