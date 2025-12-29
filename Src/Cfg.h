@@ -25,92 +25,74 @@
 #define I2C_ENABLED             STD_ON
 #define UART_ENABLED            STD_ON
 #define WIFI_ENABLED            STD_ON
+
+
+//------------------Enable or disable App drivers------------//
 #define IMU_ENABLED             STD_ON
 #define MQTT_ENABLED            STD_ON
 #define LDR_ENABLED             STD_ON
-
-//------------------Enable or disable App drivers------------//
-#define ULTRASONIC_ENABLED  STD_ON
-
-//------------------Enable or disable App drivers------------//
-#define ULTRASONIC_ENABLED  STD_ON
+#define ULTRASONIC_ENABLED      STD_ON
 
 
-//------------------Enable or disable debug logs for Hal drivers------------//
-// GPIO Debugging
-#if GPIO_ENABLED == STD_ON
-#define GPIO_DEBUG_ENABLED      STD_ON
-#endif
-// ADC Debugging
-#if ADC_ENABLED == STD_ON
-#define ADC_DEBUG_ENABLED       STD_ON
-#endif 
-// I2C Debugging
-#if I2C_ENABLED == STD_ON
-#define I2C_DEBUG_ENABLED       STD_ON
-#endif
-// UART Debugging
-#if UART_ENABLED == STD_ON
-#define UART_DEBUG_ENABLED      STD_ON
-#endif
-
-//------------------Enable or disable debug logs for App drivers------------//
-// Ultrasonic Debugging
-#if ULTRASONIC_ENABLED == STD_ON
-#define ULTRASONIC_DEBUG_ENABLED      STD_ON
-#endif
-
-
-#if WIFI_ENABLED == STD_ON
-#define WIFI_SSID               "WAEL"
-#define WIFI_PASSWORD           "Null@987897"
-#define WIFI_DEBUG_ENABLED      STD_ON
-#endif
-
-#if IMU_ENABLED == STD_ON
-#define IMU_DEBUG_ENABLED       STD_ON
-// MPU6050 I2C Address
-#define MPU6050_ADDR            0x68
-
-// MPU6050 Registers
-#define MPU6050_PWR_MGMT_1      0x6B
-#define MPU6050_WHO_AM_I        0x75
-#define MPU6050_ACCEL_XOUT_H    0x3B
-#define MPU6050_GYRO_XOUT_H     0x43
-#define MPU6050_TEMP_OUT_H      0x41
-
-#define ACCEL_SENS_2G      16384.0f     // LSB/g
-#define GYRO_SENS_250DPS   131.0f       // LSB/(deg/s)
-
-#endif // IMU_ENABLED
-
-
+//------------------Configuration & Debugging Options APP Drivers------------//
+ 
 // MQTT Configuration & Debugging
 #if MQTT_ENABLED == STD_ON
-#define MQTT_BROKER_URI         "mqtt://192.168.1.7:1883"
-#define MQTT_CLIENT_ID          "esp32_client"
-#define MQTT_USERNAME            "WaelKahlawy"
-#define MQTT_PASSWORD            "123456789"
 #define MQTT_DEBUG_ENABLED      STD_ON
-#endif
+#define MQTT_BROKER_URI         "mqtt://192.168.1.7:1883"  // Local MQTT broker URI
+#define MQTT_CLIENT_ID          "esp32_client"             // MQTT client ID
+#define MQTT_USERNAME            "WaelKahlawy"             // MQTT username
+#define MQTT_PASSWORD            "123456789"               // MQTT password
 
+#endif
 
 // LDR Configuration & Debugging
 #if LDR_ENABLED == STD_ON
+#define LDR_DEBUG_ENABLED       STD_ON   // Enable LDR debug logs
 #define LDR_ADC_CHANNEL         ADC_CHANNEL_6       // GPIO34
+#define LDR_ADC_WIDTH_BIT       ADC_WIDTH_BIT_12    // 12-bit ADC resolution
+#define LDR_ADC_ATTEN_DB        ADC_ATTEN_DB_11     // 11dB attenuation for full-scale voltage
 #define LDR_MIN_VALUE           0                   // Dark (raw ADC)
 #define LDR_MAX_VALUE           4095                // Bright (raw ADC)
 #define LDR_MIN_LIGHT           0                   // Mapped: Dark = 0%
 #define LDR_MAX_LIGHT           100                 // Mapped: Bright = 100%
-#define LDR_DEBUG_ENABLED       STD_ON
+
 #endif
 
+// Ultrasonic Configuration & Debugging
+#if ULTRASONIC_ENABLED == STD_ON
+#define ULTRASONIC_DEBUG_ENABLED      STD_ON  // Enable Ultrasonic debug logs
+#define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)     // Speed of sound in cm/us
+#define ULTRASONIC_DIV_FACTOR              (2.0f)   // Division factor for distance calculation
+
+#endif
+
+// IMU Configuration & Debugging
+#if IMU_ENABLED == STD_ON
+#define IMU_DEBUG_ENABLED       STD_ON
+// MPU6050 I2C Address
+#define MPU6050_ADDR            0x68          // Default I2C address
+// MPU6050 Registers
+#define MPU6050_PWR_MGMT_1      0x6B         // Power Management register
+#define MPU6050_WHO_AM_I        0x75         // Who Am I register   
+#define MPU6050_ACCEL_XOUT_H    0x3B         // Accelerometer data register
+#define MPU6050_GYRO_XOUT_H     0x43         // Gyroscope data register   
+#define MPU6050_TEMP_OUT_H      0x41         // Temperature data register
+#define ACCEL_SENS_2G           16384.0f     // LSB/g
+#define GYRO_SENS_250DPS        131.0f       // LSB/(deg/s)
+
+#endif // IMU_ENABLED
 
 
-//------------------ App driver configration------------//
-//Ultrasonic config
-#define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)
-#define ULTRASONIC_DIV_FACTOR              (2.0f)
+//------------------Configuration & Debugging Options HAL Drivers------------//
+
+// WIFI Configuration & Debugging
+#if WIFI_ENABLED == STD_ON
+#define WIFI_DEBUG_ENABLED      STD_ON
+#define WIFI_SSID               "WAEL"           // Your WiFi SSID
+#define WIFI_PASSWORD           "Null@987897"    // Your WiFi Password
+
+#endif
 
 
 #endif 
