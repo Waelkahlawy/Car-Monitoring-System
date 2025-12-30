@@ -13,7 +13,6 @@ typedef struct {
     gpio_num_t pin_num;         // GPIO pin number (e.g., GPIO_NUM_4)
     gpio_mode_t pin_mode;       // Pin mode: GPIO_MODE_INPUT, GPIO_MODE_OUTPUT, GPIO_MODE_OUTPUT_OD, etc.
     uint8_t pin_value;          // Initial output value (0 or 1), used only in output mode
-    gpio_pull_mode_t pin_pull;   // Pull mode: GPIO_PULLUP_ONLY, GPIO_PULLDOWN_ONLY, GPIO_FLOATING, GPIO_PULLUP_PULLDOWN
 } Gpio_ConfigType;
 
 // Function prototypes
