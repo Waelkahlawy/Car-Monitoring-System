@@ -40,7 +40,7 @@
 // MQTT Configuration & Debugging
 #if MQTT_ENABLED == STD_ON
 #define MQTT_DEBUG_ENABLED      STD_ON
-#define MQTT_BROKER_URI         "mqtt://192.168.1.7:1883"  // Local MQTT broker URI
+#define MQTT_BROKER_URI         "mqtt://172.20.10.5:1883"  // Local MQTT broker URI
 #define MQTT_CLIENT_ID          "esp32_client"             // MQTT client ID
 #define MQTT_USERNAME            "WaelKahlawy"             // MQTT username
 #define MQTT_PASSWORD            "123456789"               // MQTT password
@@ -86,20 +86,18 @@
 
 // DHT11 Sensor Configuration
 #if DHT11_ENABLED == STD_ON
+#define DHT11_GPIO_PIN              GPIO_NUM_4  
+#define DHT11_MAX_RETRIES       2                   // Number of read retries
 #define DHT11_DEBUG_ENABLED     STD_ON
-#define DHT11_GPIO_PIN          GPIO_NUM_4            // GPIO pin connected to DHT11 data line
-#define DHT11_GPIO_MODE         GPIO_MODE_OUTPUT_OD    // Open-drain output
-#define DHT11_GPIO_INITIAL_VAL  1                     // Initial state: high (pull-up)
-#define DHT11_GPIO_PULL         GPIO_PULLUP_ONLY      // Internal pull-up (external 4.7k-10k resistor recommended)
-
 #endif
+
 //------------------Configuration & Debugging Options HAL Drivers------------//
 
 // WIFI Configuration & Debugging
 #if WIFI_ENABLED == STD_ON
 #define WIFI_DEBUG_ENABLED      STD_ON
-#define WIFI_SSID               "WAEL"           // Your WiFi SSID
-#define WIFI_PASSWORD           "Null@987897"    // Your WiFi Password
+#define WIFI_SSID               "Wael"           // Your WiFi SSID
+#define WIFI_PASSWORD           "12345678"    // Your WiFi Password
 
 #endif
 
@@ -123,12 +121,12 @@
 #define ADC_DEBUG_ENABLED       STD_ON  
 
 #if GPIO_ENABLED == STD_ON
-#define GPIO_DEBUG_ENABLED      STD_ON
+#define GPIO_DEBUG_ENABLED      STD_OFF
 #define HIGH                    1
 #define LOW                     0
 
 #endif
-
+#endif
 
 
 
