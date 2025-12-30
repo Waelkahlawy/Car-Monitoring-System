@@ -6,11 +6,16 @@
 #if DHT11_ENABLED == STD_ON
 
 #include <stdint.h>
-#include "esp_err.h"
+
+// DHT11 Data Structure
+typedef struct {
+    uint8_t temperature;    // Temperature in °C
+    uint8_t humidity;       // Humidity in %
+} Dht11_DataType;
 
 // Function prototypes
-void Dht11_Init(void);                                    // Initialize DHT11 sensor
-esp_err_t Dht11_Read(uint8_t* humidity, uint8_t* temperature); // Read data, return ESP_OK on success
+void Dht11_Init(void);
+int Dht11_Main(Dht11_DataType *data);
 
 #endif // DHT11_ENABLED
 
