@@ -18,6 +18,8 @@
 #define TAG_LDR         "LDR_SENSOR"
 #define TAG_ULTRASONIC  "ULTRASONIC_DRIVER"
 #define TAG_DHT11       "DHT11"
+#define TAG_MAIN       "MAIN"
+#define TAG_GPS         "GPS_DRIVER"
 
 //------------------Enable or disable Hal drivers------------//
 #define GPIO_ENABLED            STD_ON
@@ -33,6 +35,7 @@
 #define LDR_ENABLED             STD_ON
 #define ULTRASONIC_ENABLED      STD_ON
 #define DHT11_ENABLED           STD_ON
+#define GPS_ENABLED             STD_ON
 
 
 //------------------Configuration & Debugging Options APP Drivers------------//
@@ -40,7 +43,7 @@
 // MQTT Configuration & Debugging
 #if MQTT_ENABLED == STD_ON
 #define MQTT_DEBUG_ENABLED      STD_ON
-#define MQTT_BROKER_URI         "mqtt://172.20.10.5:1883"  // Local MQTT broker URI
+#define MQTT_BROKER_URI         "mqtt://192.168.1.3:1883"  // Local MQTT broker URI
 #define MQTT_CLIENT_ID          "esp32_client"             // MQTT client ID
 #define MQTT_USERNAME            "WaelKahlawy"             // MQTT username
 #define MQTT_PASSWORD            "123456789"               // MQTT password
@@ -71,6 +74,8 @@
 // IMU Configuration & Debugging
 #if IMU_ENABLED == STD_ON
 #define IMU_DEBUG_ENABLED      STD_ON
+#define IMU_SDA_PIN           GPIO_NUM_21
+#define IMU_SCL_PIN           GPIO_NUM_22
 // MPU6050 I2C Address
 #define MPU6050_ADDR           0x68          // Default I2C address
 // MPU6050 Registers
@@ -82,22 +87,45 @@
 #define ACCEL_SENS_2G          16384.0f     // LSB/g
 #define GYRO_SENS_250DPS       131.0f       // LSB/(deg/s)
 
+// IMU Calibration Offsets (calculated from static data - X axis facing up, gravity on +X)
+
+// Accelerometer offsets (in g) - subtract these after scaling raw to g
+#define IMU_AX_OFFSET    0.03162f
+#define IMU_AY_OFFSET   -0.03129f
+#define IMU_AZ_OFFSET   -0.07187f
+// Gyroscope offsets (in °/s) - subtract these after scaling raw to °/s
+#define IMU_GX_OFFSET   -1.72617f
+#define IMU_GY_OFFSET    1.13512f
+#define IMU_GZ_OFFSET   -0.22767f
+
 #endif // IMU_ENABLED
 
 // DHT11 Sensor Configuration
 #if DHT11_ENABLED == STD_ON
-#define DHT11_GPIO_PIN              GPIO_NUM_4  
-#define DHT11_MAX_RETRIES       2                   // Number of read retries
+#define DHT11_GPIO_PIN          GPIO_NUM_4  
+#define DHT11_MAX_RETRIES       3                  // Number of read retries
 #define DHT11_DEBUG_ENABLED     STD_ON
 #endif
+
+
+
+#if GPS_ENABLED == STD_ON
+#define GPS_UART_PORT           UART_NUM_2          // UART port for GPS
+#define GPS_TX_PIN              GPIO_NUM_17         // TX pin (ESP32 → SIM808 RX)
+#define GPS_RX_PIN              GPIO_NUM_16         // RX pin (SIM808 TX → ESP32)
+#define GPS_BAUD_RATE           9600                // SIM808 GPS baud rate
+#define GPS_BUFFER_SIZE         512                 // GPS data buffer size
+#define GPS_DEBUG_ENABLED       STD_ON
+#endif
+
 
 //------------------Configuration & Debugging Options HAL Drivers------------//
 
 // WIFI Configuration & Debugging
 #if WIFI_ENABLED == STD_ON
 #define WIFI_DEBUG_ENABLED      STD_ON
-#define WIFI_SSID               "Wael"           // Your WiFi SSID
-#define WIFI_PASSWORD           "12345678"    // Your WiFi Password
+#define WIFI_SSID               "WAEL"           // Your WiFi SSID
+#define WIFI_PASSWORD           "Null@987897"    // Your WiFi Password
 
 #endif
 
