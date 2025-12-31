@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 #include "../../Hal/GPIO/gpio.h"
-
+#include "esp_log.h"
 
 /* ==================== Types ==================== */
 typedef struct

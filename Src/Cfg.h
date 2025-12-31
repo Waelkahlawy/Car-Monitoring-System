@@ -65,7 +65,7 @@
 #define ULTRASONIC_DEBUG_ENABLED           STD_ON  // Enable Ultrasonic debug logs
 #define ULTRASONIC_SOUND_SPEED_CM_PER_US   (0.034f)     // Speed of sound in cm/us
 #define ULTRASONIC_DIV_FACTOR              (2.0f)   // Division factor for distance calculation
-
+#define ULTRASONIC_TIMEOUT_US        (30000U)   // Time out 
 #endif
 
 // IMU Configuration & Debugging
@@ -119,13 +119,12 @@
 
 #if ADC_ENABLED == STD_ON
 #define ADC_DEBUG_ENABLED       STD_ON  
+#endif
 
 #if GPIO_ENABLED == STD_ON
 #define GPIO_DEBUG_ENABLED      STD_OFF
 #define HIGH                    1
 #define LOW                     0
-
-#endif
 #endif
 
 
