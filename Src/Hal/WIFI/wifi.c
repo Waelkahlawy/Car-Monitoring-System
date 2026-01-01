@@ -41,6 +41,7 @@ static void Wifi_EventHandler(void *arg, esp_event_base_t event_base,
 
 void Wifi_Init_Sta(void)
 {
+      esp_wifi_set_ps(WIFI_PS_NONE);
     // Initialize NVS (required for Wi-Fi)
     esp_err_t ret = nvs_flash_init(); // Initialize non-volatile storage
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) { // Handle NVS issues
@@ -83,7 +84,7 @@ void Wifi_Init_Sta(void)
     // Start Wi-Fi
     esp_wifi_start();
     // Disable power save mode for better performance
-    esp_wifi_set_ps(WIFI_PS_NONE);
+  
 
 #if WIFI_DEBUG_ENABLED == STD_ON
     ESP_LOGI(g_TAG, "Wi-Fi initialized (SSID: %s)", WIFI_SSID);
