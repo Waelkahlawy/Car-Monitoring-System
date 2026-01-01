@@ -1,4 +1,3 @@
-
 #include "ultrasonic.h" // Include Ultrasonic header
 
 #if ULTRASONIC_ENABLED == STD_ON // Check if Ultrasonic feature is enabled
@@ -21,6 +20,8 @@ static volatile int64_t g_echo_start_time = 0;
 static volatile int64_t g_echo_end_time   = 0;
 static volatile uint8_t g_echo_done_flag  = 0;
 
+// ISR For Ultrasonic
+static void IRAM_ATTR Ultrasonic_Echo_ISR(void *arg);
 
 /* ==================== Ultrasonic Initialization ==================== */
 void Ultrasonic_Init(Ultrasonic_Config_t *Ultrasonic_Config)
@@ -51,6 +52,13 @@ void Ultrasonic_Init(Ultrasonic_Config_t *Ultrasonic_Config)
     
     /* Ensure TRIG pin is LOW before starting measurement */
     Gpio_WritePinValue(&g_Trig_Pin);  // Write LOW to TRIG pin
+    
+   Gpio_EnableInterrupt(
+	ECHO_GPIO_PIN,
+	GPIO_INTR_ANYEDGE,
+	Ultrasonic_Echo_ISR,
+	(void *)ECHO_GPIO_PIN
+	);
   
     // --------------------Debug information----------------------------//  
     #if ULTRASONIC_DEBUG_ENABLED == STD_ON 
@@ -114,24 +122,7 @@ static void IRAM_ATTR Ultrasonic_Echo_ISR(void *arg)
     }
 }
 
-// set callback function
 
-void Ultrasonic_GetEchoIsr(
-    Ultrasonic_IsrCallback *isr,
-    void **arg
-)
-{
-    if (isr != NULL)
-    {
-        *isr = Ultrasonic_Echo_ISR;
-    }
-
-    if (arg != NULL)
-    {
-        *arg = (void *)ECHO_GPIO_PIN;
-    }
-}
 
 
 #endif 
-
