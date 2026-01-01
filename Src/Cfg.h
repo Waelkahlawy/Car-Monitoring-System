@@ -28,7 +28,6 @@
 #define UART_ENABLED            STD_ON
 #define WIFI_ENABLED            STD_ON
 
-
 //------------------Enable or disable App drivers------------//
 #define IMU_ENABLED             STD_ON
 #define MQTT_ENABLED            STD_ON
@@ -36,6 +35,7 @@
 #define ULTRASONIC_ENABLED      STD_ON
 #define DHT11_ENABLED           STD_ON
 #define GPS_ENABLED             STD_ON
+#define GSM_ENABLED             STD_ON
 
 
 //------------------Configuration & Debugging Options APP Drivers------------//
@@ -118,7 +118,14 @@
 #define GPS_DEBUG_ENABLED       STD_ON
 #endif
 
+#if GSM_ENABLED == STD_ON
+#define GSM_DEBUG_ENABLED       STD_ON
+#define GSM_UART                UART_NUM_1
+#define GSM_TX_PIN              GPIO_NUM_17
+#define GSM_RX_PIN              GPIO_NUM_16
+#define GSM_BUF_SIZE            1024
 
+#endif
 //------------------Configuration & Debugging Options HAL Drivers------------//
 
 // WIFI Configuration & Debugging
