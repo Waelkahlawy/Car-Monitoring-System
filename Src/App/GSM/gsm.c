@@ -79,7 +79,7 @@ Gsm_Status_t GSM_GetSignal(uint8_t *rssi)
         return GSM_ERROR;
 
     /* +CSQ: <rssi>,<ber> */
-    sscanf((char *)g_gsm_rx_buffer, "+CSQ: %hhu", rssi);
+    sscanf((char *)g_gsm_rx_buffer, "+CSQ: %hhu", rssi); 
     return GSM_OK;
 }
 
