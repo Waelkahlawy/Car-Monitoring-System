@@ -16,8 +16,6 @@ typedef struct
     gpio_num_t echo_pin; // ECHO pin of the ultrasonic sensor
 } Ultrasonic_Config_t; //   ULTRASONIC Configuration Structure
 
-//pointer  for callback
-typedef void (*Ultrasonic_IsrCallback)(void *arg);
 
 /* ==================== APIs ==================== */
 /**
@@ -28,12 +26,6 @@ void Ultrasonic_Init(Ultrasonic_Config_t *Ultrasonic_Config);
  *  Read distance from ultrasonic sensor
  */
 void Ultrasonic_Main(float *Distance);
-
-/**
- *  Get Echo ISR callback and its argument
- *        (Used by main to enable GPIO interrupt)
- */
-void Ultrasonic_GetEchoIsr( Ultrasonic_IsrCallback *isr, void **arg );
 
 
 #endif//ULTRASONIC_ENABLED
