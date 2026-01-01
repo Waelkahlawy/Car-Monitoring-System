@@ -18,7 +18,7 @@
 #define TAG_LDR         "LDR_SENSOR"
 #define TAG_ULTRASONIC  "ULTRASONIC_DRIVER"
 #define TAG_DHT11       "DHT11"
-#define TAG_MAIN       "MAIN"
+#define TAG_MAIN        "MAIN"
 #define TAG_GPS         "GPS_DRIVER"
 
 //------------------Enable or disable Hal drivers------------//
@@ -157,7 +157,7 @@
 #define ADC_DEBUG_ENABLED       STD_ON  
 
 #if GPIO_ENABLED == STD_ON
-#define GPIO_DEBUG_ENABLED      STD_OFF
+#define GPIO_DEBUG_ENABLED      STD_OFF 
 #define HIGH                    1
 #define LOW                     0
 
