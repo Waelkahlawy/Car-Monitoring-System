@@ -92,6 +92,7 @@ void Wifi_Init_Sta(void)
 }
 
 #else
+#warning "WI-FI is disabled"
 
 // Stub function when WiFi is disabled
 void Wifi_Init_Sta(void)

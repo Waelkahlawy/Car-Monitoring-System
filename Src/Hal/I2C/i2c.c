@@ -168,5 +168,26 @@ int I2c_WriteRead(uint8_t device_addr, uint8_t *write_data, size_t write_size,
     return (ret == ESP_OK) ? 0 : -1;
 
 }
+#else
+
+#warning "I2C is disabled — functions will return error."
+
+void I2c_Init(I2c_ConfigType *configurations)
+{
+    // Do Nothing
+} 
+int I2c_Write(uint8_t device_addr, uint8_t *data, size_t size)
+{
+    return ESP_ERR_INVALID_STATE;
+}
+int I2c_Read(uint8_t device_addr, uint8_t *data, size_t size)
+{
+    return ESP_ERR_INVALID_STATE;
+}
+int I2c_WriteRead(uint8_t device_addr, uint8_t *write_data, size_t write_size, uint8_t *read_data, size_t read_size)
+{
+    return ESP_ERR_INVALID_STATE;
+}
+
 
 #endif // I2C_ENABLED

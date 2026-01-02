@@ -4,7 +4,6 @@
 
 #include "../../Cfg.h" // Project configuration header
 
-#if UART_ENABLED == STD_ON
 #include "esp_log.h" // ESP32 logging
 #include "driver/uart.h" // UART driver header
 #include <stdint.h>    // Standard integer types
@@ -21,10 +20,6 @@ typedef struct {
 void Uart_Init(Uart_ConfigType *configurations); // Initialize UART with given configurations
 int Uart_Write(const char *data, size_t size);   // Write data to UART
 int Uart_Read(uint8_t *data, size_t size, uint32_t timeout_ms); // Read data from UART with timeout
-#else 
- ESP_LOGI(g_TAG, " UART feature is disabled "); 
-return -1;
 
-#endif // UART_ENABLED
 
 #endif // UART_H

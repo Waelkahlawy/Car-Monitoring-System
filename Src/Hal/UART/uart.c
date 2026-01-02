@@ -68,4 +68,17 @@ int Uart_Read(uint8_t *data, size_t size, uint32_t timeout_ms)
 
 #else
 #warning "UART feature is disabled"
+void Uart_Init(Uart_ConfigType *configurations)
+{
+
+}
+int Uart_Write(const char *data, size_t size)
+{
+    return ESP_ERR_INVALID_STATE;
+}
+int Uart_Read(uint8_t *data, size_t size, uint32_t timeout_ms)
+{
+    return ESP_ERR_INVALID_STATE;
+}
+
 #endif

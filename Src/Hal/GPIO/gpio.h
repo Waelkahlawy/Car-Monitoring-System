@@ -3,7 +3,6 @@
 
 #include "../../Cfg.h"
 
-#if GPIO_ENABLED == STD_ON
 
 #include "driver/gpio.h"
 #include <stdint.h>
@@ -31,6 +30,6 @@ void Gpio_WritePinValue(Gpio_ConfigType *pinConfig); // Write value to a GPIO pi
 void Gpio_EnableInterrupt(gpio_num_t pin_num,gpio_int_type_t int_type,Gpio_IsrCallback callback,void *arg);
 void Gpio_DisableInterrupt(gpio_num_t pin_num);
 
-#endif // GPIO_ENABLED
+
 
 #endif // GPIO_H
