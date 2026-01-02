@@ -20,8 +20,8 @@
 
 // --- System Settings ---
 #define SYS_BAUD_RATE           115200
-#define CFG_WIFI_SSID           ""
-#define CFG_WIFI_PASS           ""
+#define CFG_WIFI_SSID           "DESKTOP-UC4MCI1 1119"
+#define CFG_WIFI_PASS           "L279<10g"
 
 // --- AI Model Source ---
 // 1 = From Header (Flash), 0 = From SD Card
