@@ -8,18 +8,19 @@
 
 //------------------Tags for logging -------------//
 
-#define TAG_GPIO        "GPIO_DRIVER"
-#define TAG_ADC         "ADC_DRIVER"
-#define TAG_I2C         "I2C_DRIVER"
-#define TAG_UART        "UART_DRIVER"
-#define TAG_WIFI        "WIFI_DRIVER"
-#define TAG_IMU         "IMU_DRIVER"
-#define TAG_MQTT        "MQTT_DRIVER"
-#define TAG_LDR         "LDR_SENSOR"
-#define TAG_ULTRASONIC  "ULTRASONIC_DRIVER"
-#define TAG_DHT11       "DHT11"
-#define TAG_MAIN        "MAIN"
-#define TAG_GPS         "GPS_DRIVER"
+#define TAG_GPIO                        "GPIO_DRIVER"
+#define TAG_ADC                         "ADC_DRIVER"
+#define TAG_I2C                         "I2C_DRIVER"
+#define TAG_UART                        "UART_DRIVER"
+#define TAG_WIFI                        "WIFI_DRIVER"
+#define TAG_IMU                         "IMU_DRIVER"
+#define TAG_MQTT                        "MQTT_DRIVER"
+#define TAG_LDR                         "LDR_SENSOR"
+#define TAG_ULTRASONIC                  "ULTRASONIC_DRIVER"
+#define TAG_DHT11                       "DHT11"
+#define TAG_MAIN                        "MAIN"
+#define TAG_GPS                         "GPS_DRIVER"
+#define TAG_PREDICTIVE_MAINTENANCE      "GPS_DRIVER"
 
 //------------------Enable or disable Hal drivers------------//
 #define GPIO_ENABLED            STD_ON
@@ -29,14 +30,14 @@
 #define WIFI_ENABLED            STD_ON
 
 //------------------Enable or disable App drivers------------//
-#define IMU_ENABLED             STD_ON
-#define MQTT_ENABLED            STD_ON
-#define LDR_ENABLED             STD_ON
-#define ULTRASONIC_ENABLED      STD_ON
-#define DHT11_ENABLED           STD_ON
-#define GPS_ENABLED             STD_ON
-#define GSM_ENABLED             STD_ON
-
+#define IMU_ENABLED                    STD_ON
+#define MQTT_ENABLED                   STD_ON
+#define LDR_ENABLED                    STD_ON
+#define ULTRASONIC_ENABLED             STD_ON
+#define DHT11_ENABLED                  STD_ON
+#define GPS_ENABLED                    STD_ON
+#define GSM_ENABLED                    STD_ON
+#define PREDICTIVE_MAINTENANCE_ENABLED STD_ON
 
 //------------------Configuration & Debugging Options APP Drivers------------//
 
@@ -75,9 +76,11 @@
 
 // IMU Configuration & Debugging
 #if IMU_ENABLED == STD_ON
-#define IMU_DEBUG_ENABLED      STD_ON
+#define IMU_DEBUG_ENABLED      STD_OFF
+#define IMU1_I2C_PORT             I2C_NUM_0
 #define IMU_SDA_PIN           GPIO_NUM_21
 #define IMU_SCL_PIN           GPIO_NUM_22
+#define IMU_CLK_SPEED         400000UL
 // MPU6050 I2C Address
 #define MPU6050_ADDR           0x68          // Default I2C address
 // MPU6050 Registers
@@ -168,4 +171,3 @@
 
 
 #endif // CFG_H
-

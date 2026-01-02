@@ -12,7 +12,6 @@ static const char *g_TAG = TAG_IMU;
 
 void Imu_Init(void)
 {
-
     uint8_t g_who_am_i;
     uint8_t g_reg;
 
@@ -69,15 +68,14 @@ void Imu_Main(Imu_DataType *data)
 
 
 #if IMU_DEBUG_ENABLED == STD_ON
-    ESP_LOGI(g_TAG, "Accel: X=%.2f g, Y=%.2f g, Z=%.2f g | Gyro: X=%.2f °/s, Y=%.2f °/s, Z=%.2f °/s | Temp=%.2f °C",
-                 data->accel_x ,
-                 data->accel_y ,
-                 data->accel_z ,
-                 data->gyro_x  ,
-                 data->gyro_y  ,
-                 data->gyro_z  ,  
-                 data->temperature 
-    );
+    printf(">Ax:%.2f\n", data->accel_x);
+    printf(">Ay:%.2f\n", data->accel_y);
+    printf(">Az:%.2f\n", data->accel_z);
+    printf(">Gx:%.2f\n", data->gyro_x);
+    printf(">Gy:%.2f\n", data->gyro_y);
+    printf(">Gz:%.2f\n", data->gyro_z);
+    printf(">T:%.2f\n", data->temperature);
+    fflush(stdout);
           
 #endif
 

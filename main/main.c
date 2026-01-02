@@ -7,13 +7,14 @@
 #include "../Src/App/MQTT/mqtt.h"
 #include "../Src/App/IMU/imu.h"
 #include "../Src/App/LDR/ldr.h"
+#include "../Src/App/PREDICTIVE_MAINTENANCE/predictive_maintenance.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 
 
-
+static const char *TAG = "APP_MAIN";
 
 
 
