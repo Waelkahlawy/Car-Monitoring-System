@@ -21,6 +21,9 @@ typedef struct {
     float  temperature;   // Temperature
 } Imu_DataType;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 // Function prototypes
 void Imu_Init(void);                                                        // Initialize IMU sensor                    
 void Imu_Main(Imu_DataType *data);                                          // Main IMU data acquisition function
@@ -29,6 +32,10 @@ int Imu_ReadGyro(int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z);        // R
 int Imu_ReadTemp(float *temperature);                                       // Read temperature data
 float Imu_GetGyroMagnitude(void);                                           // Get gyroscope magnitude
 float Imu_GetAccelMagnitude(void);                                          // Get accelerometer magnitude                
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // IMU_ENABLED
 #endif // IMU_H
