@@ -105,8 +105,8 @@ The system classifies driver activity into **10 categories**:
 ### Project Structure
 
 ```text
-CameraWebServer/
-├── main/
+
+main/
 │   ├── main.ino                    # Entry point & setup
 │   ├── app_httpd.cpp               # HTTP server & MJPEG streaming
 │   ├── camera_pins.h               # Board-specific pin definitions
