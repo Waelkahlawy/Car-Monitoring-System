@@ -41,7 +41,15 @@ return sensorValue; // Return the read sensor value
 
 }
 #else 
- ESP_LOGI(g_TAG, " ADC feature is disabled "); 
-return -1;
+#warning "ADC is disabled — functions will return error."
+
+void Adc_Init(Adc_ConfigType *configurations)
+{
+    // Do Nothing
+}
+uint32_t Adc_ReadValue(adc_channel_t channel) 
+{
+    return ESP_ERR_INVALID_STATE;
+}
 
 #endif 

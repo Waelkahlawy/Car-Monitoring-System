@@ -1,11 +1,9 @@
 #include "dht11.h"
 
-
-
 #if DHT11_ENABLED == STD_ON
 
 #include "../../Hal/GPIO/gpio.h"
-#include "driver/gpio.h"
+
 #include "esp_timer.h"
 #include "esp_rom_sys.h"
 #include "esp_log.h"
@@ -127,6 +125,8 @@ int Dht11_Main(Dht11_DataType *data)
     return -1;  // Failed
 
 }
+    
+
 
 #else
 

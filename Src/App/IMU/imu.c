@@ -4,26 +4,11 @@
 
 #include "../../Hal/I2C/i2c.h"
 #include "esp_log.h"
-
+#include <math.h>
 // Debug TAG
 static const char *g_TAG = TAG_IMU;
 
-void send_teleplot_data(Imu_DataType *data) {
-    // Method A: Simple printf (most reliable)
-    printf(">accel_x:%d\n", data->accel_x);
-    printf(">accel_y:%d\n", data->accel_y);
-    printf(">accel_z:%d\n", data->accel_z);
-    printf(">gyro_x:%d\n", data->gyro_x);
-    printf(">gyro_y:%d\n", data->gyro_y);
-    printf(">gyro_z:%d\n", data->gyro_z);
-    printf(">temp:%d\n", data->temperature);
-    
-    // Method B: With timestamp
-    // int64_t time_ms = esp_timer_get_time() / 1000;
-    // printf("@%lld>accel_x:%.3f\n", time_ms, data->accel_x);
-    
-    fflush(stdout); // Ensure data is sent immediately
-}
+
 
 void Imu_Init(void)
 {
@@ -67,24 +52,33 @@ void Imu_Main(Imu_DataType *data)
     data->accel_z = (int16_t)((g_raw_data[4] << 8) | g_raw_data[5]);
     // Parse temperature data
     data->temperature = (int16_t)((g_raw_data[6] << 8) | g_raw_data[7]);
-
     // Parse gyroscope data
-    data->gyro_x = (int16_t)((g_raw_data[8] << 8) | g_raw_data[9]);
+    data->gyro_x = (int16_t)(((g_raw_data[8] << 8) | g_raw_data[9]));
     data->gyro_y = (int16_t)((g_raw_data[10] << 8) | g_raw_data[11]);
     data->gyro_z = (int16_t)((g_raw_data[12] << 8) | g_raw_data[13]);
+        // for calabration
+    data->accel_x = ((float)data->accel_x / ACCEL_SENS_2G) - IMU_AX_OFFSET;
+    data->accel_y = ((float)data->accel_y / ACCEL_SENS_2G) - IMU_AY_OFFSET;
+    data->accel_z = ((float)data->accel_z / ACCEL_SENS_2G) - IMU_AZ_OFFSET;
+    
+    data->temperature = (data->temperature / 340.0f) + 36.53f;
+
+    data->gyro_x  = ((float)data->gyro_x / GYRO_SENS_250DPS) - IMU_GX_OFFSET;
+    data->gyro_y  = ((float)data->gyro_y / GYRO_SENS_250DPS) - IMU_GY_OFFSET;
+    data->gyro_z  = ((float)data->gyro_z / GYRO_SENS_250DPS) - IMU_GZ_OFFSET;
+
 
 #if IMU_DEBUG_ENABLED == STD_ON
-    // ESP_LOGI(g_TAG, "Accel: X=%.2f g, Y=%.2f g, Z=%.2f g | Gyro: X=%.2f °/s, Y=%.2f °/s, Z=%.2f °/s | Temp=%.2f °C",
-    //              data->accel_x / ACCEL_SENS_2G,
-    //              data->accel_y / ACCEL_SENS_2G,
-    //              data->accel_z / ACCEL_SENS_2G,
-    //              data->gyro_x / GYRO_SENS_250DPS,
-    //              data->gyro_y / GYRO_SENS_250DPS,
-    //              data->gyro_z / GYRO_SENS_250DPS,
-    //              (data->temperature / 340.0f) + 36.53f);
-      // Send each sensor value on its own teleplot line
-    send_teleplot_data(data);
-        
+    ESP_LOGI(g_TAG, "Accel: X=%.2f g, Y=%.2f g, Z=%.2f g | Gyro: X=%.2f °/s, Y=%.2f °/s, Z=%.2f °/s | Temp=%.2f °C",
+                 data->accel_x ,
+                 data->accel_y ,
+                 data->accel_z ,
+                 data->gyro_x  ,
+                 data->gyro_y  ,
+                 data->gyro_z  ,  
+                 data->temperature 
+    );
+          
 #endif
 
 }
@@ -158,6 +152,83 @@ int Imu_ReadTemp(float *temperature)
 
     return 0;
 
+}
+
+float Imu_GetGyroMagnitude(void)
+{
+    // Read gyroscope data
+    int16_t gx, gy, gz;
+    if (Imu_ReadGyro(&gx, &gy, &gz) != 0) {
+        return 0.0f;
+    }
+
+    // Calculate magnitude: sqrt(x² + y² + z²)
+    float magnitude = sqrtf((float)(gx * gx + gy * gy + gz * gz));
+
+#if IMU_DEBUG_ENABLED == STD_ON
+    ESP_LOGI(g_TAG, "Gyro Magnitude: %.2f", magnitude);
+#endif
+
+    return magnitude;
+
+}
+
+
+float Imu_GetAccelMagnitude(void)
+{
+
+    // Read accelerometer data
+    int16_t ax, ay, az;
+    if (Imu_ReadAccel(&ax, &ay, &az) != 0) {
+        return 0.0f;
+    }
+
+    // Calculate magnitude: sqrt(x² + y² + z²)
+    float magnitude = sqrtf((float)(ax * ax + ay * ay + az * az));
+
+#if IMU_DEBUG_ENABLED == STD_ON
+    ESP_LOGI(g_TAG, "Accel Magnitude: %.2f", magnitude);
+#endif
+
+    return magnitude;
+
+}
+
+#else  
+
+void Imu_Init(void)
+{
+    // Do nothing
+}
+
+void Imu_Main(Imu_DataType *data)
+{
+    // Do nothing
+}
+
+int Imu_ReadAccel(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z)
+{
+    return -1;
+}
+
+int Imu_ReadGyro(int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z)
+{
+    return -1;
+}
+
+int Imu_ReadTemp(float *temperature)
+{
+    return -1;
+}
+
+float Imu_GetAccelMagnitude(void)
+{
+    return 0.0f;
+}
+
+float Imu_GetGyroMagnitude(void)
+{
+    return 0.0f;
 }
 
 #endif // IMU_ENABLED

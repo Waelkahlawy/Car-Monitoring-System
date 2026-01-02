@@ -1,0 +1,6 @@
+body { background: #121212; color: white; font-family: sans-serif; text-align: center; }
+.container { margin-top: 20px; }
+img { border: 2px solid #333; border-radius: 8px; max-width: 100%; }
+.info-panel { margin-top: 15px; padding: 20px; background: #1e1e1e; display: inline-block; border-radius: 10px; }
+#label { font-size: 24px; font-weight: bold; color: #4ade80; }
+#score { font-size: 18px; color: #888; }

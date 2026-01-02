@@ -2,8 +2,6 @@
 #define ADC_H
 
 #include "../../Cfg.h" // Project configuration header
-
-#if ADC_ENABLED == STD_ON // ADC feature enabled
 #include "esp_log.h" // ESP32 logging
 #include "driver/adc.h" // ESP32 ADC driver
 #include <stdint.h>     // Standard integer types
@@ -21,9 +19,5 @@ void Adc_Init(Adc_ConfigType *configurations); // Initialize ADC with given conf
 
 
 uint32_t Adc_ReadValue(adc_channel_t channel); // Read value from specified ADC channel
-#else 
- ESP_LOGI(g_TAG, " ADC feature is disabled "); 
-return -1;
 
-#endif // ADC_ENABLED
 #endif // ADC_H

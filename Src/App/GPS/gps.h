@@ -1,51 +1,33 @@
-/* gps.h FILE GAURD */
-#ifndef GPS_H_
-#define GPS_H_
 
-#define GPS_ENABLED   STD_ON
+#ifndef GPS_H
+#define GPS_H
+
+#include "../../Cfg.h"
 
 #if GPS_ENABLED == STD_ON
 
-    /* LIBs INCLUSION */
-    #include <stdint.h>
-    #include <sys/_intsup.h>
-    #include "esp_err.h"
-    #include "freertos/FreeRTOS.h"
-    #include "portmacro.h"
-    #include "esp_log.h"
-    #include "../../Hal/UART/uart.h"
+#include <stdint.h>
+#include <stdbool.h>
 
-    /* GPS RECIVED BUFFER SIZE Based On Full NMEA Sentences*/
-    #define BUFFER_SIZE     128
+// GPS Data Structure
+typedef struct {
+    float latitude;         // Latitude in decimal degrees
+    float longitude;        // Longitude in decimal degrees
+    float altitude;         // Altitude in meters
+    float speed;            // Speed in km/h
+    uint8_t satellites;     // Number of satellites
+    bool valid;             // GPS fix valid (true) or not (false)
+    uint8_t hour;           // UTC hour
+    uint8_t minute;         // UTC minute
+    uint8_t second;         // UTC second
+} Gps_DataType;
 
-    /* CAIRO TIME ZONE */
-    #define CAIRO_TIMEZONE       2
+// Function prototypes
+void Gps_Init(void);
+int Gps_Main(Gps_DataType *data);
+void Gps_PowerOn(void);
+void Gps_PowerOff(void);
 
-    /* Knots To Kmh Conversion Factor  */
-    #define KnotsToKmh_ConversionFactor 1.852
+#endif // GPS_ENABLED
 
-    /* GPS LOCATION DATA TYPE */
-    typedef struct 
-    {
-        float Latitude;
-        float Longitude;
-        float Altitude;
-        float Speed;
-        float Course;
-        float Timestamp;
-    }Gps_Parameters_t;
-
-    typedef struct
-    {
-        uint8_t Hour;
-        uint8_t Min;
-        uint8_t Sec;
-    }GPS_Time_t;
-
-    void GPS_Init   (const Uart_ConfigType *UART_Config);
-    void GPS_GetData(Gps_Parameters_t *GPS_Parametars);
-
-#endif /* GPS_ON */
-
-
-#endif /* GPS_H_ */
+#endif // GPS_H

@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 #include "../../Hal/GPIO/gpio.h"
-
+#include "esp_log.h"
 
 /* ==================== Types ==================== */
 typedef struct
@@ -19,13 +19,11 @@ typedef struct
 
 /* ==================== APIs ==================== */
 /**
- * @brief Initialize Ultrasonic sensor
- * @param config Pointer to ultrasonic configuration
+ * Initialize Ultrasonic sensor
  */
 void Ultrasonic_Init(Ultrasonic_Config_t *Ultrasonic_Config);
 /**
- * @brief Read distance from ultrasonic sensor
- * @param Distance Pointer to store distance in cm
+ *  Read distance from ultrasonic sensor
  */
 void Ultrasonic_Main(float *Distance);
 

@@ -15,6 +15,10 @@ idf_component_register(
         "../Src/App/LDR/ldr.c" 
         "../Src/App/Ultrasonic/ultrasonic.c"   
         "../Src/App/DHT11/dht11.c"  
+        "../Src/App/GPS/gps.c"  
+        "../Src/App/GSM/gsm.c"
+
+        
 
     INCLUDE_DIRS 
         # List the include directories of this component here
@@ -29,9 +33,12 @@ idf_component_register(
         "../Src/App/LDR"
         "../Src/App/Ultrasonic"
         "../Src/App/DHT11"
+        "../Src/App/GPS"
+        "../Src/App/GSM"
+           
                         
 
-                # optional, add here public include directories
+                        # optional, add here public include directories
     PRIV_INCLUDE_DIRS   # optional, add here private include directories
     REQUIRES            # optional, list the public requirements (component names)
     PRIV_REQUIRES       # optional, list the private requirements

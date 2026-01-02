@@ -12,22 +12,23 @@
 
 // IMU Data Structure
 typedef struct {
-    int16_t accel_x;    // Accelerometer X-axis
-    int16_t accel_y;    // Accelerometer Y-axis
-    int16_t accel_z;    // Accelerometer Z-axis
-    int16_t gyro_x;     // Gyroscope X-axis
-    int16_t gyro_y;     // Gyroscope Y-axis
-    int16_t gyro_z;     // Gyroscope Z-axis
-    int16_t temperature; // Temperature
+    float  accel_x;       // Accelerometer X-axis
+    float  accel_y;       // Accelerometer Y-axis
+    float  accel_z;       // Accelerometer Z-axis
+    float  gyro_x;        // Gyroscope X-axis
+    float  gyro_y;        // Gyroscope Y-axis
+    float  gyro_z;        // Gyroscope Z-axis
+    float  temperature;   // Temperature
 } Imu_DataType;
 
 // Function prototypes
-void Imu_Init(void);
-void Imu_Main(Imu_DataType *data);
-int Imu_ReadAccel(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z);
-int Imu_ReadGyro(int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z);
-int Imu_ReadTemp(float *temperature);
+void Imu_Init(void);                                                        // Initialize IMU sensor                    
+void Imu_Main(Imu_DataType *data);                                          // Main IMU data acquisition function
+int Imu_ReadAccel(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z);    // Read accelerometer data
+int Imu_ReadGyro(int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z);        // Read gyroscope data
+int Imu_ReadTemp(float *temperature);                                       // Read temperature data
+float Imu_GetGyroMagnitude(void);                                           // Get gyroscope magnitude
+float Imu_GetAccelMagnitude(void);                                          // Get accelerometer magnitude                
 
 #endif // IMU_ENABLED
-
 #endif // IMU_H
