@@ -6,7 +6,6 @@
 .project
 .settings/
 .vscode
-managed_components/
 
 # Compiled files
 *.o

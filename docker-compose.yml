@@ -1,0 +1,83 @@
+# version: '3.8'
+
+services:
+  # MQTT Broker (Mosquitto)
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: nova_car_mosquitto
+    ports:
+      - "1883:1883"      # MQTT port
+      - "9001:9001"      # WebSocket port (optional)
+    volumes:
+      - ./docker/mosquitto/config:/mosquitto/config
+      - ./docker/mosquitto/data:/mosquitto/data
+      - ./docker/mosquitto/log:/mosquitto/log
+    networks:
+      - nova_car_network
+    restart: unless-stopped
+
+  # InfluxDB - Time Series Database
+  influxdb:
+    image: influxdb:2.7
+    container_name: nova_car_influxdb
+    ports:
+      - "8086:8086"      # InfluxDB HTTP API
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin123456
+      - DOCKER_INFLUXDB_INIT_ORG=nova_car
+      - DOCKER_INFLUXDB_INIT_BUCKET=nova_car_data
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
+    volumes:
+      - ./docker/influxdb/data:/var/lib/influxdb2
+      - ./docker/influxdb/config:/etc/influxdb2
+    networks:
+      - nova_car_network
+    restart: unless-stopped
+
+  # Telegraf - Data Collection Agent
+  telegraf:
+    image: telegraf:1.28
+    container_name: nova_car_telegraf
+    depends_on:
+      - mosquitto
+      - influxdb
+    volumes:
+      - ./docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=my-super-secret-auth-token
+      - INFLUXDB_ORG=nova_car
+      - INFLUXDB_BUCKET=nova_car_data
+    networks:
+      - nova_car_network
+    restart: unless-stopped
+
+  # Grafana - Visualization Dashboard
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: nova_car_grafana
+    ports:
+      - "3000:3000"      # Grafana web interface
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123456
+      - GF_INSTALL_PLUGINS=
+    volumes:
+      - ./docker/grafana/data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - influxdb
+    networks:
+      - nova_car_network
+    restart: unless-stopped
+
+networks:
+  nova_car_network:
+    driver: bridge
+
+volumes:
+  influxdb_data:
+  grafana_data:
+
