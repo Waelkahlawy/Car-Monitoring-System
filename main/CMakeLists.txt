@@ -5,7 +5,7 @@ idf_component_register(
         SRCS 
         # List the source files of this component here  
         "main.c" 
-        "../Src/Hal/GPIO/gpio.c" 
+        "../Src/Hal/Gpio/gpio.c" 
         "../Src/Hal/ADC/adc.c"      
         "../Src/Hal/I2C/i2c.c"    
         "../Src/Hal/UART/uart.c"   
@@ -13,11 +13,10 @@ idf_component_register(
         "../Src/App/IMU/imu.c" 
         "../Src/App/MQTT/mqtt.c"       
         "../Src/App/LDR/ldr.c" 
-        "../Src/App/ULTRASONIC/ultrasonic.c"   
+        "../Src/App/Ultrasonic/ultrasonic.c"   
         "../Src/App/DHT11/dht11.c"  
         "../Src/App/GPS/gps.c"  
         "../Src/App/GSM/gsm.c"
-        "../Src/App/PREDICTIVE_MAINTENANCE/predictive_maintenance.cpp"
 
         
 
@@ -32,11 +31,10 @@ idf_component_register(
         "../Src/App/MQTT"
         "../Src/App/IMU/"
         "../Src/App/LDR"
-        "../Src/App/ULTRASONIC"
+        "../Src/App/Ultrasonic"
         "../Src/App/DHT11"
         "../Src/App/GPS"
         "../Src/App/GSM"
-        "../Src/App/PREDICTIVE_MAINTENANCE"
            
                         
 

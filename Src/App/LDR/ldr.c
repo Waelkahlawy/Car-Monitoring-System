@@ -56,7 +56,7 @@ void Ldr_Init(void)
 
 uint32_t Ldr_Main(void)
 {
-    return ESP_ERR_INVALID_STATE;
-}   
+    return 0;
+}
 
 #endif // LDR_ENABLED

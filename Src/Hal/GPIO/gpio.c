@@ -101,7 +101,6 @@ void Gpio_DisableInterrupt(gpio_num_t pin_num)
 
 #else
 // Stub implementations when GPIO driver is disabled
-#warning "GPIO is disabled "
 
 void Gpio_InitPin(Gpio_ConfigType *pinConfig)
 {
@@ -110,20 +109,12 @@ void Gpio_InitPin(Gpio_ConfigType *pinConfig)
 
 uint8_t Gpio_ReadPinValue(gpio_num_t pin_num)
 {
-        return ESP_ERR_INVALID_STATE;
+    return 0;
 }
 
 void Gpio_WritePinValue(Gpio_ConfigType *pinConfig)
 {
     // Do nothing
-}
-void Gpio_EnableInterrupt(gpio_num_t pin_num,gpio_int_type_t int_type,Gpio_IsrCallback callback,void *arg)
-{
-
-}
-void Gpio_DisableInterrupt(gpio_num_t pin_num)
-{
-    
 }
 
 #endif // GPIO_ENABLED
