@@ -21,12 +21,12 @@
 
 // --- System Settings ---
 #define SYS_BAUD_RATE           115200
-#define CFG_WIFI_SSID           ""
-#define CFG_WIFI_PASS           ""
+#define CFG_WIFI_SSID           "DESKTOP-UC4MCI1 1119"
+#define CFG_WIFI_PASS           "L279<10g"
 
 // --- Telegram Settings ---
-#define CFG_TG_BOT_TOKEN        ""
-#define CFG_TG_CHAT_ID          ""
+#define CFG_TG_BOT_TOKEN        "8571433290:AAHjToBjkHj84rhQRa3vzYjJmG_gMlQvNS8"
+#define CFG_TG_CHAT_ID          "5708590934"
 // --- AI Model Source ---
 // 1 = From Header (Flash), 0 = From SD Card
 #define MODEL_FROM_HEADER       0  
@@ -35,10 +35,14 @@
 #define CFG_AI_CONF_THRESH      0.30f //0.60f
 
 // --- MQTT & WiFi ---
-#define CFG_MQTT_BROKER         "broker.hivemq.com"
-#define CFG_MQTT_PORT           1883
-#define CFG_MQTT_CLIENT_ID      "ESP32_Driver"
-#define CFG_MQTT_TOPIC          "esp32/driver/status"
+#define CFG_MQTT_BROKER         "18.197.149.97"   
+#define CFG_MQTT_PORT           1883              
+#define CFG_MQTT_CLIENT_ID      "ESP32_Driver_Cam1"
+#define CFG_MQTT_USER           "asm_user"
+#define CFG_MQTT_PASS           "543as"
+#define CFG_MQTT_TOPIC_STATUS     "NOVA_CAR/ESP2/CV_Driver/index_status1"
+#define CFG_MQTT_TOPIC_CONF       "NOVA_CAR/ESP2/CV_Driver/confidence1"
+#define CFG_MQTT_TOPIC_IMAGE    "esp32/cam1/image"
 
 // --- Camera Pins ---
 

@@ -2,6 +2,7 @@
 #define MQTT_MANAGER_H
 
 #include "../../Config.h"
+
 #if CFG_MODULE_MQTT == ENABLED
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -11,7 +12,13 @@ class MQTTManager {
 public:
     static void init();
     static void loop();
-    static bool publish(const char* label, float score);
+    
+  
+    static bool publishData(const char* label, float score);
+    
+    
+    static bool publishImage(uint8_t* image_data, size_t image_len);
+
 private:
     static void reconnect();
 };
