@@ -1,5 +1,6 @@
 # 🚗 Driver Distraction Detection using Edge AI
 
+
 An **AIoT (Artificial Intelligence of Things)** system that combines computer vision and IoT capabilities to detect driver distraction in real-time using an ESP32-CAM module. The system runs entirely on-device (edge computing) and sends instant alerts when dangerous driving behavior is detected.
 
 ## 📋 Table of Contents
