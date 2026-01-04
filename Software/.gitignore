@@ -1,0 +1,25 @@
+# IDE / Workspace settings
+.vscode/
+.clang-format
+.clangd
+.cproject
+.project
+.settings/
+.vscode
+managed_components/
+
+# Compiled files
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# Build directories
+build/
+Debug/
+Release/
+
+# OS system files
+Thumbs.db
+.DS_Store
