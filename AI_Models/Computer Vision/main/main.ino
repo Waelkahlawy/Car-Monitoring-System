@@ -58,11 +58,11 @@ void Task_AI(void *pvParameters) {
                 // 4. Check for Danger
                 if (res.index != 0 && !g_readyToSend && (millis() - lastSnapTime > 5000)) {
                     
-                    // ما زلنا نحول الصورة (عشان التليجرام لو مفعل)
+                
                     uint8_t* tempBuf = NULL;
                     size_t tempLen = 0;
                     
-                    // جودة متوسطة (40)
+                
                     bool converted = frame2jpg(fb, 40, &tempBuf, &tempLen);
 
                     if (converted) {
@@ -118,15 +118,15 @@ void Task_Comm(void *pvParameters) {
             // --- MQTT Section (Data Only) ---
             #if CFG_MODULE_MQTT == ENABLED
             Serial.println("Comm: Sending MQTT Data Only...");
-            // إرسال البيانات النصية فقط
+           
             MQTTManager::publishData(lbl.c_str(), scr);
             
-            // *تم إلغاء إرسال الصورة هنا*
+            
             // MQTTManager::publishImage(g_alertJpgBuf, g_alertJpgLen); 
             #endif
 
             // --- Telegram Section (Sends Photo) ---
-            // (سيبعث الصورة للتليجرام فقط إذا كان مفعلاً في Config.h)
+      
             #if CFG_MODULE_TELEGRAM == ENABLED
             Serial.println("Comm: Sending Telegram...");
             TelegramManager::sendIPG(idx, lbl, scr, g_alertJpgBuf, g_alertJpgLen);
