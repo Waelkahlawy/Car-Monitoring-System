@@ -59,23 +59,20 @@ flowchart LR
         direction TB
         MQTT[MQTT Broker]
         SMS[SMS Gateway]
-        OTA[OTA Server]
+        FOTA_Server[FOTA Server]
     end
-
     subgraph ESP32["ESP32 (FreeRTOS)"]
         direction TB
         ML["ML Inference\n(Engine Fault & Driver State)"]
         Scheduler[Task Scheduler]
         Fusion[Sensor Fusion]
         Actuator[Actuator Control]
-        FOTA["FOTA Manager"]
-
+        FOTA["FOTA Update Handler"]
         ML --> Scheduler
         Fusion --> Scheduler
         Actuator --> Scheduler
         FOTA --> Scheduler
     end
-
     subgraph Hardware["Hardware Interfaces\n(Sensors & Modules)"]
         direction TB
         GPS["GPS\n(UART)"]
@@ -88,17 +85,12 @@ flowchart LR
         Camera["Camera\n(SPI/Parallel)"]
         SIM["SIM Module\n(UART)"]
     end
-
-    External -->|"MQTT over Wi-Fi"| ESP32
-    External -->|"UART (AT commands)"| ESP32
+    MQTT -->|"MQTT over Wi-Fi\n(Telemetry & Commands)"| ESP32
+    SMS <-->|"SMS Alerts via Cellular"| ESP32
+    FOTA_Server -->|"FOTA Update\n(HTTPS over Wi-Fi or Cellular)"| ESP32
     ESP32 -->|"Data Acquisition\n(UART, I2C, ADC, GPIO)"| Hardware
     Hardware -->|"Sensor Data"| ESP32
-
-    MQTT -->|"FOTA Trigger"| FOTA
-    OTA -->|"Firmware Image\n(HTTPS)"| FOTA
-
     style External fill:#f0f8ff,stroke:#333,stroke-width:2px
-    style OTA fill:#fff5e6,stroke:#ff9900,stroke-width:2px
     style ESP32 fill:#e6f3ff,stroke:#0066cc,stroke-width:3px,color:#000
     style Hardware fill:#fff0f0,stroke:#cc0000,stroke-width:2px
 ```
