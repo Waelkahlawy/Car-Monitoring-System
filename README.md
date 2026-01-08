@@ -32,6 +32,20 @@ The system transforms a standard vehicle into an intelligent, connected platform
 
 - Real-Time Multitasking  
   Efficient task management using FreeRTOS on ESP32
+  
+## Firmware Over-The-Air (FOTA)
+NOVA supports secure Firmware Over-The-Air (FOTA) updates, enabling remote firmware
+upgrades without physical access to the vehicle.
+
+Key capabilities include:
+- Dual-partition OTA scheme for safe updates
+- MQTT-based update triggering
+- HTTPS-encrypted firmware download
+- Automatic rollback on failed updates
+- Version-controlled deployments
+
+This ensures continuous improvement, rapid bug fixing, and security patching
+throughout the vehicle lifecycle.
 
 ## Hardware Components
 
@@ -55,18 +69,22 @@ flowchart LR
         direction TB
         MQTT[MQTT Broker]
         SMS[SMS Gateway]
+        OTA[OTA Server / CI Pipeline]
     end
 
     subgraph ESP32["ESP32 (FreeRTOS)"]
         direction TB
-        ML["ML Inference\n(Engine Fault & Driver State)"]
         Scheduler[Task Scheduler]
+
+        ML["ML Inference\n(Engine Fault & Driver State)"]
         Fusion[Sensor Fusion]
         Actuator[Actuator Control]
+        OTA_Task["OTA Task\n(FOTA Manager)"]
 
         ML --> Scheduler
         Fusion --> Scheduler
         Actuator --> Scheduler
+        OTA_Task --> Scheduler
     end
 
     subgraph Hardware["Hardware Interfaces\n(Sensors & Modules)"]
@@ -82,14 +100,17 @@ flowchart LR
         SIM["SIM Module\n(UART)"]
     end
 
-    External -->|"MQTT over Wi-Fi"| ESP32
-    External -->|"UART (AT commands)"| ESP32
     ESP32 -->|"Data Acquisition\n(UART, I2C, ADC, GPIO)"| Hardware
     Hardware -->|"Sensor Data"| ESP32
 
-    style External fill:#f0f8ff,stroke:#333,stroke-width:2px
-    style ESP32 fill:#e6f3ff,stroke:#0066cc,stroke-width:3px,color:#000
-    style Hardware fill:#fff0f0,stroke:#cc0000,stroke-width:2px
+    ESP32 -->|"MQTT Telemetry\n(JSON over Wi-Fi)"| MQTT
+    ESP32 -->|"SMS Alerts\n(AT Commands)"| SMS
+
+    MQTT -->|"FOTA Trigger"| ESP32
+    OTA -->|"HTTPS Firmware Image"| ESP32
+
+    style OTA fill:#fff5e6,stroke:#ff9900,stroke-width:2px
+    style ESP32 fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
 ```
 
 ## Machine Learning Models
